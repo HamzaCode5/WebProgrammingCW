@@ -1,0 +1,30 @@
+{
+  "name": "webprogrammingcw",
+  "description": "* Accept multiple source code files for analysis.\r * Identify pairs of files with significant similarity.\r * Keep a database of past submissions that are automatically included in analysis.\r * Output a similarity report of some form.",
+  "version": "1.0.0",
+  "main": "PlagiarismChecker.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd application && nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UP938212/WebProgrammingCW.git"
+  },
+  "keywords": [
+    "cw"
+  ],
+  "author": "Hamza Berqia < up938212@myport.ac.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UP938212/WebProgrammingCW/issues"
+  },
+  "homepage": "https://github.com/UP938212/WebProgrammingCW#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
