@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/UP938212/WebProgrammingCW#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "dir-compare": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "sqlite": "^4.0.21"
   },
   "devDependencies": {
     "eslint": "^7.22.0",
