@@ -1,24 +1,93 @@
 body {
-    background-color: #d9d9d9;
+    background: linear-gradient(to top right, #33ccff 0%, #ff99cc 100%);
+    height: 100vh;
 }
 
 h1 {
-    color:#1ca30a;
+    color: #ffffff;
     text-align: center;
     margin-left: 20px;
-    font-family: "Lucida Console";
+    font-family: "Copperplate";
 }
+
 h2 {
-    color:#f3f3f3;
+    color: #ffffff;
     text-align: center;
     margin-left: 10px;
-    font-family: "Lucida Console";
+    font-family: "Copperplate";
 }
+
+h3 {
+    color: #ffffff;
+    text-align: center;
+    margin-left: 10px;
+    font-family: "Copperplate";
+}
+
+p {
+    color: #ffffff;
+    text-align: center;
+    margin-left: 30px;
+    font-family: "Copperplate";
+}
+
 #demobox {
-    background-color: rgb(9, 136, 16) ;
-    padding: 10px ;
+    background-color: rgb(9, 136, 16);
+    padding: 10px;
     border: 1px solid rgba(6, 143, 17, 0.781);
-  }
+}
+
+fieldset {
+    padding: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.781);
+}
+
+legend {
+    color: #ffffff;
+    text-align: center;
+    margin-left: 20px;
+    font-family: "Copperplate";
+}
+
 #drop-zone {
     align-content: center;
+}
+
+button {
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    color: #000000;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    color: #000000;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.bottomleft {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 18px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
@@ -8,27 +9,23 @@
     <link rel="stylesheet" href="styles.css">
     <meta name="google-signin-client_id" content="952323551369-s5fuphigou11a8nl99t6pph4pmsre24s.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="main.js" defer></script>
 </head>
 
-
-
 <body>
-    <h1>Source Code Plagiarism Checker</h1>
-
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <h2>Fileupload</h2>
-
+    <h1>Vérificateur De Plagiat Du Code Source</h1>
+    <h2>Téléverser Un Fichier</h2>
     <div class="container">
-
         <form method="POST" action="/" enctype="multipart/form-data">
             <input type="file" name="file" />
             <input type="submit" value="upload">
         </form>
-
-        <a href="StoredFiles.html"><button id="iiButton">Stored Files</button></a>
-        <a href="About.html"><button id="iButton">About</button></a>
-        <a href="French.html"><button id="iButton">French</button></a>
-
+        <a href="StoredFiles.html"><button id="iiButton">Fichiers Stockés</button></a>
+        <a href="FrenchAbout.html"><button id="iButton">À Propo</button></a>
+        <a href="index.html"><button id="iButton">Anglais</button></a>
+    </div>
+    <div class="bottomleft">
+        <a href="index.html"><button id="cdButton">Dos</button></a>
     </div>
 </body>

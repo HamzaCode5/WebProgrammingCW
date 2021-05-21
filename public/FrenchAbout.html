@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+
+<div class="bottomleft">
+    <a href="French.html"><button id="cdButton">Dos</button></a>
+</div>
+
+<body>
+    <h1>About</h1>
+    <h2>Qu'est-ce que le vérif icateur de plagiat du code source?</h2>
+    <p>Cette application Web permet aux utilisateurs de télécharger un fichier de code source et de comparer son contenu à d'autres fichiers, en vérifiant le plagiat. Pour ce faire, j'ai utilisé Node - Levenshtein pour déterminer la distance / différence
+        en caractères de chaque fichier. Ça va d'abord Mesurez les caractères du fichier, puis il comparera à côté d'autres fichiers qui se trouvent dans le dossier "uploads" des projets. Pour l'utiliser, exécutez simplement npm start, accédez à localhost:
+        8080 et cliquez sur Choisir un fichier. Une fois que vous avez choisi votre fichier, cliquez sur télécharger.</p>
+    <p>
+        After the user has chosen and uploaded a file, the file 's size will be compared to the other files stored in the uploads folder. The "num" that's returned is the number of differences the file has compared to the other file for each of the file(s) in
+        the folder. That number then goes through a calculation and gives the user a plagiarism percentage.
+    </p>
+    <p>Une fois que l'utilisateur a choisi et téléchargé un fichier, la taille du fichier sera comparée aux autres fichiers stockés dans le dossier des téléchargements. Le "nombre" renvoyé est le nombre de différences que le fichier a par rapport à l'autre
+        fichier pour chacun des fichiers dans le dossier. Ce nombre passe ensuite par un calcul et donne à l'utilisateur un pourcentage de plagiat.</p>
+    </p>
+    <p>Une fois que l'utilisateur clique sur le téléchargement, il sera dirigé vers la page de rapport de plagiat, qui fournira le fichier qui a été téléchargé en haut et sa taille. Avec tous les autres fichiers ci-dessous comparés, vous aurez la taille
+        et le plagiat score pour chaque comparaison de fichier avec le fichier nouvellement téléchargé.</p>
+    <p>J'ai créé une fonction de fichiers stockés qui, une fois cliquée, renverra tous les fichiers actuellement stockés dans le dossier "uploads". J'ai également essayé d'implémenter un HTML dans PDf afin que l'utilisateur puisse télécharger le rapport
+        mais je n'ai pas eu de chance avec il - NPM Npm downloads express express-fileupload node-levenshtein</p>

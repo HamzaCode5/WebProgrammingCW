@@ -1,23 +1,40 @@
 {
-  "name": "WebProgrammingCW",
-  "version": "1.0.0",
-  "description": "* Accept multiple source code files for analysis.\r * Identify pairs of files with significant similarity.\r * Keep a database of past submissions that are automatically included in analysis.\r * Output a similarity report of some form.\r * Drag and Drop files",
-  "main": "public/PlagiarismChecker.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/UP938212/WebProgrammingCW.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/UP938212/WebProgrammingCW/issues"
-  },
-  "homepage": "https://github.com/UP938212/WebProgrammingCW#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "express-fileupload": "^1.2.1"
-  }
+    "name": "WebProgrammingCW",
+    "version": "1.0.0",
+    "description": "Accept multiple source code files for analysis",
+    "main": "public/pages/index.html",
+    "scripts": {
+        "test": "npm run lint",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/UP938212/WebProgrammingCW.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/UP938212/WebProgrammingCW/issues"
+    },
+    "homepage": "https://github.com/UP938212/WebProgrammingCW#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "express-fileupload": "^1.2.1",
+        "node-levenshtein": "^3.0.7",
+        "simple-google-openid": "^0.4.1",
+        "sqlite": "^4.0.22",
+        "sqlite3": "^5.0.2"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-portsoc": "^0.1.0",
+        "nodemon": "^2.0.2"
+    },
+    "eslintConfig": {
+        "extends": "portsoc",
+        "root": true,
+        "env": {
+            "browser": true
+        }
+    }
 }

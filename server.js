@@ -1,77 +1,91 @@
+const lev = require("node-levenshtein")
 const express = require("express");
 const upload = require("express-fileupload")
 const path = require("path");
-const fs = require('fs')
+const fs = require('fs');
+const app = express();
 
-const app = express()
+app.use('/', express.static("public"));
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(upload())
-app.listen(8080, () => console.log("Listening to http://localhost:8080"));
+app.use(upload());
 
-app.get("/", ((req, res) => res.sendFile(__dirname + "/public/index.html")))
+app.listen(8080, function() {
+    console.log("Listening to http://localhost:8080")
+});
 
-app.get("/datas", ((req, res) => {
-    const uploadsPath = path.join(__dirname, 'uploads');
-    const dirs = getDirectories(uploadsPath);
-    const databaseFiles = getAllStoredFiles(uploadsPath, dirs);
-    res.send(databaseFiles)
-}))
+app.get("/", function(req, res) {
+    res.sendFile("/public/index.html")
+})
 
-app.post("/", ((req, res) => prepareEverything(req, res)))
+app.get("/filenames", function(req, res) {
+    const uploadsPath = path.join('uploads');
+    const storedFileNames = fs.readdirSync(uploadsPath);
+    res.json({ storedFileNames })
+});
 
-const prepareEverything = (req, res) => {
-    const files = req.files
-    if (files) {
-        const file = files.file;
-        const fileName = file.name;
+let plagScores = {}
+app.get("/results", function(req, res) {
+    res.json(plagScores)
+})
 
-        if (file.mimetype == "text/plain") {
-            console.log(`Error: No uploading because File: ${fileName} is a text file`)
-            return
-        }
+app.post("/", function(req, res) {
+    const newUploadedFile = req.files
 
-        const uploadsPath = path.join(__dirname, 'uploads');
-        const dirs = getDirectories(uploadsPath);
-        const databaseFiles = getAllStoredFiles(uploadsPath, dirs);
-        const newFile = { fileName, code: cleanUpCode(file.data.toString()) }
-        console.log(newFile)
+    if (newUploadedFile === null) {
+        console.log("Please first choose a file before upload")
+        return
+    }
 
-        // iterate trough stored File and find which lines are same
-        databaseFiles.forEach(dbFile => {
-            newFile[dbFile.fileName] = findSameLines(dbFile.code, newFile.code)
-        })
+    const file = newUploadedFile.file;
+    const fileName = file.name;
+    const fileData = file.data.toString()
+    const uploadsPath = path.join('uploads');
+    const storedFileNames = fs.readdirSync(uploadsPath);
 
+    if (!allowedMimetype.includes(file.mimetype)) {
+        res.send(`Error Wrong File Type, \nFile '${fileName}' is a '${file.mimetype}' Source Code Files Only, Please Go Back And Upload A Source Code File`)
+        return
+    } else {
         uploadFileToFolder(file, uploadsPath)
-        res.send(newFile)
     }
-}
 
-const findSameLines = (arr1, arr2) => {
-    const maxLength = arr1.length > arr2.length ? arr2.length : arr1.length;
+    const dataOfAll = {
+        "fileName": fileName,
+        "size": fileData.length,
+        "storedFiles": []
+    }
 
-    const sameLines = [];
-    for (let i = 0; i < maxLength; i++) {
-        if (arr1[i] === arr2[i]) {
-            sameLines.push(i)
+    Object.values(storedFileNames).forEach((storedFileName) => {
+
+        const storedFileData = fs.readFileSync(uploadsPath + '/' + storedFileName, 'utf8')
+        const num = lev.compare(storedFileData, fileData)
+        const currentFile = {
+            "storedFileName": storedFileName,
+            "levDistance": num,
+            "size": storedFileData.length
         }
-    }
-    return sameLines
-};
 
+        dataOfAll.storedFiles.push(currentFile)
+
+    })
+
+    plagScores = dataOfAll
+    res.sendFile(__dirname + "/public/PlagiarismScore.html")
+
+})
+
+const allowedMimetype = [
+    "text/css",
+    "application/javascript",
+    "application/x-javascript",
+    "application/ecmascript",
+    "text/javascript",
+    "text/x-python",
+    "application/java",
+    "application/java-byte-code",
+    "application/x-bytecode.python",
+    "application/octet-stream"
+    //add mimetype here for more source code types/lang allowed
+]
 const uploadFileToFolder = (file, filePath) =>
     file.mv(filePath + "/" + file.name, err => err ? console.error("File Uploaded failed: " + err) : undefined)
-
-const getDirectories = path =>
-    fs.readdirSync(path);
-
-const getAllStoredFiles = (path, fileNames) =>
-    Object.values(fileNames).map(fileName =>
-        ({ fileName, code: cleanUpCode(fs.readFileSync(path + '/' + fileName, 'utf8')) }))
-
-const cleanUpCode = txt =>
-    txt.replace(/\r/g, '')
-    .replace(/  +/g, ' ')
-    .split('\n')
-    .filter(l => l.length > 0)
-    .map(l => l.trim());

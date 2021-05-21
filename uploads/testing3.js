@@ -5,6 +5,8 @@ function save() {
     localStorage.setItem("savedText", textBox.value);
 }
 
-function save4() {
-    localStorage.setItem("savedText", textBox.value);
+function submit() {
+    // let's assume we submit to the server here
+    textBox.value = '';
+    save();
 }
